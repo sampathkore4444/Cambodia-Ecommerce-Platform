@@ -1,0 +1,26 @@
+.mobile-only { display: none; }
+.desktop-only { display: block; }
+.tablet-up { display: block; }
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+@media (max-width: 767px) {
+  .mobile-only { display: block; }
+  .desktop-only { display: none; }
+  .container { padding: 0 var(--spacing-sm); }
+}
+
+@media (min-width: 768px) {
+  .mobile-only { display: none !important; }
+  .desktop-only { display: block !important; }
+  .container { padding: 0 var(--spacing-lg); }
+}
+
+@media (min-width: 1024px) {
+  .container { padding: 0 var(--spacing-xl); }
+}

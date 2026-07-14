@@ -1,0 +1,8 @@
+.card { background: var(--background); border-radius: var(--radius-lg); padding: var(--spacing-lg); box-shadow: var(--shadow-sm); display: flex; gap: var(--spacing-md); align-items: flex-start; }
+.iconWrap { width: 48px; height: 48px; border-radius: var(--radius-lg); background: var(--primary-bg); color: var(--primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.info { display: flex; flex-direction: column; gap: 0.125rem; }
+.label { font-size: var(--font-size-sm); color: var(--text-secondary); }
+.value { font-size: var(--font-size-2xl); font-weight: 700; }
+.change { display: flex; align-items: center; gap: 0.25rem; font-size: var(--font-size-xs); font-weight: 500; }
+.positive { color: var(--success); }
+.negative { color: var(--error); }

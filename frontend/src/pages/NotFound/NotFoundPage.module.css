@@ -1,0 +1,35 @@
+.container {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 60vh; padding: var(--spacing-2xl); text-align: center;
+}
+.emoji { font-size: 5rem; margin-bottom: var(--spacing-md); }
+.title { font-size: 6rem; font-weight: 900; color: var(--primary); margin-bottom: 0; line-height: 1; }
+.heading { font-size: var(--font-size-2xl); font-weight: 700; margin-bottom: 0.25rem; }
+.subtitle { font-size: var(--font-size-lg); color: var(--text-secondary); margin-bottom: var(--spacing-md); }
+.message { color: var(--text-secondary); margin-bottom: var(--spacing-xl); max-width: 400px; line-height: 1.6; }
+
+.searchForm { display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-xl); }
+.searchBox {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-md);
+  background: var(--background); min-width: 250px;
+}
+.searchBox svg { color: var(--text-secondary); flex-shrink: 0; }
+.searchBox input { border: none; background: none; outline: none; font-size: var(--font-size-base); width: 100%; color: var(--text-primary); }
+.searchBtn {
+  padding: 0.5rem 1rem; background: var(--primary); color: white;
+  border: none; border-radius: var(--radius-md); font-weight: 600; cursor: pointer;
+}
+.searchBtn:hover { background: var(--primary-dark); }
+
+.homeBtn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.5rem; background: var(--primary); color: white;
+  border: none; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; font-size: var(--font-size-base);
+}
+.homeBtn:hover { background: var(--primary-dark); }
+
+@media (max-width: 767px) {
+  .searchForm { flex-direction: column; width: 100%; }
+  .searchBox { min-width: auto; }
+}

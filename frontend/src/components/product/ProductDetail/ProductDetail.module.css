@@ -1,0 +1,51 @@
+.detail { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); }
+.left { position: sticky; top: 80px; align-self: start; }
+.right { display: flex; flex-direction: column; gap: var(--spacing-md); }
+.title { font-size: var(--font-size-2xl); font-weight: 700; line-height: 1.4; }
+.ratingRow { display: flex; align-items: center; gap: var(--spacing-sm); }
+.stars { display: flex; gap: 2px; }
+.ratingText { font-size: var(--font-size-sm); color: var(--text-secondary); }
+.soldText { font-size: var(--font-size-sm); color: var(--text-muted); }
+.priceRow { display: flex; align-items: center; gap: var(--spacing-sm); }
+.originalPrice { font-size: var(--font-size-base); color: var(--text-muted); text-decoration: line-through; }
+.condition, .stock, .quantityRow { display: flex; align-items: center; gap: var(--spacing-sm); }
+.label { font-weight: 500; color: var(--text-secondary); white-space: nowrap; }
+.inStock { color: var(--success); font-weight: 500; }
+.outOfStock { color: var(--error); font-weight: 500; }
+.stepper { display: flex; align-items: center; border: 1.5px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+.stepBtn {
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem; background: var(--gray-50); border: none; cursor: pointer;
+  transition: background 0.15s;
+}
+.stepBtn:hover:not(:disabled) { background: var(--gray-200); }
+.stepBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+.qtyValue { width: 48px; text-align: center; font-weight: 600; border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+.actions { display: flex; gap: var(--spacing-sm); }
+.shareRow { display: flex; gap: var(--spacing-sm); }
+.sellerCard {
+  display: flex; align-items: center; gap: var(--spacing-sm);
+  padding: var(--spacing-md); border: 1px solid var(--border); border-radius: var(--radius-lg);
+}
+.sellerAvatar { width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--primary-bg); color: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: 600; }
+.sellerInfo { flex: 1; display: flex; flex-direction: column; }
+.sellerName { font-weight: 600; font-size: var(--font-size-sm); }
+.sellerLoc { font-size: var(--font-size-xs); color: var(--text-muted); }
+.tabs { display: flex; border-bottom: 2px solid var(--border); gap: 0; }
+.tab {
+  padding: 0.75rem 1rem; font-size: var(--font-size-sm); font-weight: 500;
+  color: var(--text-secondary); border-bottom: 2px solid transparent;
+  margin-bottom: -2px; cursor: pointer; background: none; border-top: none; border-left: none; border-right: none;
+}
+.activeTab { color: var(--primary); border-bottom-color: var(--primary); }
+.tabContent { padding: var(--spacing-md) 0; font-size: var(--font-size-sm); color: var(--text-secondary); line-height: 1.7; }
+.specs { display: flex; flex-direction: column; }
+.specRow { display: flex; padding: 0.5rem 0; border-bottom: 1px solid var(--border-light); }
+.specKey { width: 140px; font-weight: 500; color: var(--text-muted); flex-shrink: 0; }
+.specVal { color: var(--text-primary); }
+
+@media (max-width: 767px) {
+  .detail { grid-template-columns: 1fr; gap: var(--spacing-md); }
+  .left { position: static; }
+  .actions { flex-direction: column; }
+}

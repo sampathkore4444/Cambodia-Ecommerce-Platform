@@ -1,0 +1,18 @@
+.item { display: flex; gap: var(--spacing-md); padding: var(--spacing-md); border-bottom: 1px solid var(--border-light); }
+.image { width: 80px; height: 80px; border-radius: var(--radius-md); object-fit: cover; flex-shrink: 0; background: var(--gray-100); }
+.info { flex: 1; display: flex; flex-direction: column; gap: 0.25rem; }
+.title { font-size: var(--font-size-sm); font-weight: 500; line-height: 1.4; }
+.variant { font-size: var(--font-size-xs); color: var(--text-muted); }
+.price { font-weight: 700; color: var(--khmer-red); font-size: var(--font-size-sm); }
+.bottom { display: flex; align-items: center; gap: var(--spacing-sm); margin-top: auto; }
+.stepper { display: flex; align-items: center; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+.stepBtn {
+  width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+  background: var(--gray-50); border: none; cursor: pointer; font-size: 0.875rem;
+}
+.stepBtn:hover:not(:disabled) { background: var(--gray-200); }
+.stepBtn:disabled { opacity: 0.4; }
+.qty { width: 32px; text-align: center; font-size: var(--font-size-sm); font-weight: 600; }
+.subtotal { font-weight: 600; color: var(--text-primary); font-size: var(--font-size-sm); }
+.removeBtn { color: var(--text-muted); padding: 0.25rem; background: none; border: none; cursor: pointer; }
+.removeBtn:hover { color: var(--error); }

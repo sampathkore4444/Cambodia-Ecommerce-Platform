@@ -1,0 +1,20 @@
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: var(--z-modal-backdrop); animation: fadeIn 0.2s; }
+.drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; width: 360px;
+  background: white; z-index: var(--z-modal); display: flex; flex-direction: column;
+  animation: slideIn 0.3s ease;
+}
+.header { display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-md); border-bottom: 1px solid var(--border); }
+.header h3 { font-size: var(--font-size-lg); }
+.close { background: none; border: none; cursor: pointer; padding: 0.25rem; color: var(--text-secondary); }
+.items { flex: 1; overflow-y: auto; padding: var(--spacing-sm); }
+.empty { text-align: center; padding: var(--spacing-2xl); color: var(--text-muted); }
+.item { display: flex; gap: var(--spacing-sm); padding: var(--spacing-sm); border-bottom: 1px solid var(--border-light); }
+.itemImg { width: 50px; height: 50px; border-radius: var(--radius-sm); object-fit: cover; background: var(--gray-100); }
+.itemInfo { display: flex; flex-direction: column; gap: 0.125rem; }
+.itemName { font-size: var(--font-size-sm); font-weight: 500; }
+.itemPrice { font-size: var(--font-size-xs); color: var(--text-muted); }
+.footer { padding: var(--spacing-md); border-top: 1px solid var(--border); }
+.total { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: var(--spacing-md); }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }

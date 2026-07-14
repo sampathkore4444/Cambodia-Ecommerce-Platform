@@ -1,0 +1,55 @@
+.authPage {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 80vh; padding: var(--spacing-xl) var(--spacing-md);
+  background: var(--background-secondary, #f8f9fa);
+}
+.authCard {
+  background: white; padding: var(--spacing-2xl); border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md); width: 100%; max-width: 420px;
+}
+.authCard h1 { font-size: var(--font-size-2xl); font-weight: 800; text-align: center; margin-bottom: 0.25rem; }
+.authSubtitle { text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-lg); }
+.authDesc { text-align: center; font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--spacing-lg); }
+
+.tabToggle { display: flex; gap: 0.5rem; margin-bottom: var(--spacing-lg); }
+.tabToggle button {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.5rem; border: 1px solid var(--border); border-radius: var(--radius-md);
+  background: none; cursor: pointer; font-weight: 500; color: var(--text-secondary);
+}
+.activeTab { background: var(--primary); color: white; border-color: var(--primary); }
+
+.inputGroup { margin-bottom: var(--spacing-md); }
+.inputGroup label { display: block; font-weight: 600; margin-bottom: 0.25rem; font-size: var(--font-size-sm); }
+.inputGroup input {
+  width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-md);
+  font-size: var(--font-size-base); box-sizing: border-box; color: var(--text-primary); background: white;
+}
+.inputGroup input:focus { outline: none; border-color: var(--primary); }
+
+.passwordField { position: relative; display: flex; align-items: center; }
+.passwordField svg { position: absolute; left: 0.75rem; color: var(--text-secondary); }
+.passwordField input { padding-left: 2.5rem; }
+.eyeBtn { position: absolute; right: 0.75rem; background: none; border: none; cursor: pointer; color: var(--text-secondary); }
+
+.otpInput { text-align: center; letter-spacing: 0.5rem; font-size: var(--font-size-xl) !important; font-weight: 700; }
+
+.authBtn {
+  width: 100%; padding: 0.75rem; background: var(--primary); color: white;
+  border: none; border-radius: var(--radius-md); font-weight: 600; cursor: pointer;
+  font-size: var(--font-size-base); margin-top: var(--spacing-sm);
+}
+.authBtn:hover { background: var(--primary-dark); }
+.authBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.linkBtn {
+  display: block; width: 100%; text-align: center; padding: 0.5rem;
+  background: none; border: none; color: var(--primary); cursor: pointer;
+  font-size: var(--font-size-sm); margin-top: var(--spacing-sm);
+}
+.linkBtn:hover { text-decoration: underline; }
+
+.error { color: #dc3545; font-size: var(--font-size-sm); text-align: center; margin-bottom: var(--spacing-sm); }
+
+.successStep { text-align: center; }
+.successIcon { color: #28a745; margin-bottom: var(--spacing-md); }

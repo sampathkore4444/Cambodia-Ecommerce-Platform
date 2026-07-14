@@ -1,0 +1,21 @@
+.formContainer { max-width: 400px; width: 100%; }
+.title { font-size: var(--font-size-3xl); text-align: center; margin-bottom: 0.25rem; }
+.subtitle { text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-lg); }
+.tabs { display: flex; gap: 0; border-bottom: 2px solid var(--border); margin-bottom: var(--spacing-lg); }
+.tab { flex: 1; padding: 0.75rem; text-align: center; font-weight: 500; color: var(--text-muted); border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+.activeTab { color: var(--primary); border-bottom-color: var(--primary); }
+.form { display: flex; flex-direction: column; gap: var(--spacing-md); }
+.error { font-size: var(--font-size-sm); color: var(--error); text-align: center; }
+.links { text-align: center; margin-top: var(--spacing-sm); }
+.link { font-size: var(--font-size-sm); color: var(--primary); }
+.divider { text-align: center; margin: var(--spacing-lg) 0; position: relative; color: var(--text-muted); font-size: var(--font-size-sm); }
+.divider::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: var(--border); }
+.divider span { background: white; padding: 0 1rem; position: relative; }
+.socials { display: flex; gap: var(--spacing-sm); }
+.socialBtn { flex: 1; padding: 0.75rem; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; font-size: var(--font-size-sm); border: none; display: flex; align-items: center; justify-content: center; }
+.socialBtnWrapper { flex: 1; display: flex; }
+.socialBtnWrapper > div { width: 100%; }
+.socialBtnWrapper > div > div { width: 100% !important; }
+.socialBtnWrapper iframe { width: 100% !important; border: none !important; }
+.registerText { text-align: center; font-size: var(--font-size-sm); color: var(--text-secondary); margin-top: var(--spacing-lg); }
+.registerLink { color: var(--primary); font-weight: 600; }

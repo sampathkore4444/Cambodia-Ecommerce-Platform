@@ -1,0 +1,10 @@
+.summary { background: var(--background); border-radius: var(--radius-lg); padding: var(--spacing-lg); border: 1px solid var(--border); position: sticky; top: 80px; }
+.heading { font-size: var(--font-size-lg); font-weight: 600; margin-bottom: var(--spacing-md); }
+.row { display: flex; justify-content: space-between; font-size: var(--font-size-sm); color: var(--text-secondary); padding: 0.375rem 0; }
+.couponRow { display: flex; gap: var(--spacing-sm); margin: var(--spacing-sm) 0; }
+.couponInput { flex: 1; padding: 0.5rem; border: 1px solid var(--border); border-radius: var(--radius-md); font-size: var(--font-size-sm); outline: none; }
+.couponInput:focus { border-color: var(--primary); }
+.divider { border-top: 1px solid var(--border); margin: var(--spacing-sm) 0; }
+.totalRow { display: flex; justify-content: space-between; font-weight: 700; font-size: var(--font-size-lg); margin-bottom: var(--spacing-md); }
+.total { color: var(--khmer-red); }
+.secure { text-align: center; font-size: var(--font-size-xs); color: var(--text-muted); margin-top: var(--spacing-sm); }

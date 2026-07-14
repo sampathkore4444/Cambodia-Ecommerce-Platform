@@ -1,0 +1,10 @@
+.summary { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+.title { font-size: var(--font-size-xl); }
+.section { padding: var(--spacing-md); background: var(--gray-50); border-radius: var(--radius-md); }
+.section h4 { font-size: var(--font-size-sm); font-weight: 600; margin-bottom: 0.375rem; }
+.section p { font-size: var(--font-size-sm); color: var(--text-secondary); }
+.itemRow { display: flex; justify-content: space-between; padding: 0.375rem 0; font-size: var(--font-size-sm); color: var(--text-secondary); }
+.totals { display: flex; flex-direction: column; gap: 0.375rem; }
+.totalRow { display: flex; justify-content: space-between; font-size: var(--font-size-sm); color: var(--text-secondary); }
+.grandTotal { font-weight: 700; font-size: var(--font-size-lg); color: var(--text-primary); border-top: 1px solid var(--border); padding-top: var(--spacing-sm); }
+.actions { display: flex; justify-content: space-between; }

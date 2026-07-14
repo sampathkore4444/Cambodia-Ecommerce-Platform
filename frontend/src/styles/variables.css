@@ -1,0 +1,79 @@
+:root {
+  --primary: #00897B;
+  --primary-dark: #00695C;
+  --primary-light: #4DB6AC;
+  --primary-bg: #E0F2F1;
+
+  --secondary: #FF8F00;
+  --secondary-dark: #E65100;
+  --secondary-light: #FFB74D;
+
+  --khmer-red: #C41E3A;
+  --khmer-blue: #032EA1;
+
+  --gray-50: #FAFAFA;
+  --gray-100: #F5F5F5;
+  --gray-200: #EEEEEE;
+  --gray-300: #E0E0E0;
+  --gray-400: #BDBDBD;
+  --gray-500: #9E9E9E;
+  --gray-600: #757575;
+  --gray-700: #616161;
+  --gray-800: #424242;
+  --gray-900: #212121;
+
+  --success: #4CAF50;
+  --success-light: #E8F5E9;
+  --warning: #FFC107;
+  --warning-light: #FFF8E1;
+  --error: #F44336;
+  --error-light: #FFEBEE;
+  --info: #2196F3;
+  --info-light: #E3F2FD;
+
+  --background: #FFFFFF;
+  --background-alt: #F8F9FA;
+  --surface: #FFFFFF;
+  --text-primary: #212121;
+  --text-secondary: #616161;
+  --text-muted: #9E9E9E;
+  --text-inverse: #FFFFFF;
+  --border: #E0E0E0;
+  --border-light: #F5F5F5;
+
+  --font-family: 'Noto Sans Khmer', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal-backdrop: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+
+  /* Breakpoints: sm=480px, md=768px, lg=1024px, xl=1280px */
+}

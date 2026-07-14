@@ -1,0 +1,13 @@
+.display { display: flex; align-items: center; gap: 0.5rem; }
+.both { display: flex; flex-direction: column; gap: 0.125rem; }
+.primary { font-weight: 700; color: var(--khmer-red); }
+.secondary { font-size: var(--font-size-xs); color: var(--text-muted); }
+.price { font-weight: 700; color: var(--khmer-red); }
+.toggle {
+  font-size: var(--font-size-xs); color: var(--primary); font-weight: 600;
+  padding: 0.125rem 0.375rem; border-radius: var(--radius-sm);
+  background: var(--primary-bg); cursor: pointer; border: none;
+}
+.sm .price { font-size: var(--font-size-sm); }
+.md .price { font-size: var(--font-size-lg); }
+.lg .price { font-size: var(--font-size-2xl); }

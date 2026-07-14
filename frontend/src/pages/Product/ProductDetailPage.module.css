@@ -1,0 +1,25 @@
+.page { display: flex; flex-direction: column; gap: var(--spacing-xl); }
+.related { background: var(--background); padding: var(--spacing-lg); border-radius: var(--radius-xl); box-shadow: var(--shadow-sm); }
+.related h2 { font-size: var(--font-size-xl); margin-bottom: var(--spacing-md); }
+
+.notFound {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 400px; gap: var(--spacing-md); text-align: center;
+}
+.notFoundIcon { font-size: 4rem; opacity: 0.4; }
+.notFoundTitle { font-size: var(--font-size-xl); font-weight: 700; color: var(--text-primary); }
+.notFoundDesc { color: var(--text-secondary); font-size: var(--font-size-base); }
+.notFoundLink {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  margin-top: var(--spacing-sm); padding: 0.625rem 1.25rem;
+  background: var(--primary); color: white; border-radius: var(--radius-md);
+  text-decoration: none; font-weight: 600; font-size: var(--font-size-sm);
+  transition: opacity 0.2s;
+}
+.notFoundLink:hover { opacity: 0.85; }
+
+.error {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 300px; gap: var(--spacing-sm); text-align: center;
+}
+.errorText { color: var(--error, #e53935); font-size: var(--font-size-base); }

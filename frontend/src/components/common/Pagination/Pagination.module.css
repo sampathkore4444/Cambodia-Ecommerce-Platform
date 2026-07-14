@@ -1,0 +1,17 @@
+.pagination { display: flex; align-items: center; justify-content: center; gap: 0.25rem; padding: var(--spacing-lg) 0; }
+.btn, .pageBtn {
+  display: flex; align-items: center; justify-content: center;
+  min-width: 36px; height: 36px; padding: 0 0.5rem;
+  border-radius: var(--radius-md); font-size: var(--font-size-sm);
+  color: var(--text-primary); transition: all 0.2s; border: 1px solid var(--border);
+  background: var(--background); cursor: pointer;
+}
+.btn:hover:not(:disabled), .pageBtn:hover { background: var(--gray-100); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.active { background: var(--primary); color: white; border-color: var(--primary); }
+.active:hover { background: var(--primary-dark); }
+.ellipsis { min-width: 36px; text-align: center; color: var(--text-muted); }
+
+@media (max-width: 767px) {
+  .pageBtn:not(.active):not(:first-child):not(:last-child) { display: none; }
+}

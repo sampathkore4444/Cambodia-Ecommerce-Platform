@@ -1,0 +1,19 @@
+.checkout { max-width: 720px; margin: 0 auto; }
+.steps { display: flex; justify-content: center; gap: var(--spacing-xl); margin-bottom: var(--spacing-2xl); padding: var(--spacing-md) 0; }
+.step { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.stepCircle {
+  width: 36px; height: 36px; border-radius: var(--radius-full);
+  border: 2px solid var(--gray-300); display: flex; align-items: center;
+  justify-content: center; font-size: var(--font-size-sm); font-weight: 600;
+  color: var(--text-muted); background: var(--background);
+}
+.active .stepCircle { border-color: var(--primary); color: var(--primary); background: var(--primary-bg); }
+.completed .stepCircle { border-color: var(--primary); background: var(--primary); color: white; }
+.stepLabel { font-size: var(--font-size-xs); color: var(--text-muted); white-space: nowrap; }
+.active .stepLabel, .completed .stepLabel { color: var(--primary); font-weight: 500; }
+.content { background: var(--background); border-radius: var(--radius-lg); padding: var(--spacing-lg); box-shadow: var(--shadow-sm); }
+
+@media (max-width: 767px) {
+  .steps { gap: var(--spacing-md); }
+  .stepLabel { font-size: 10px; }
+}

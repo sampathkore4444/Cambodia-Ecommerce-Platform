@@ -1,0 +1,8 @@
+.page { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+.title { font-size: var(--font-size-2xl); }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-md); }
+.content { display: grid; grid-template-columns: 2fr 1fr; gap: var(--spacing-lg); }
+.chart { background: var(--background); border-radius: var(--radius-lg); padding: var(--spacing-lg); box-shadow: var(--shadow-sm); }
+.chart h3 { margin-bottom: var(--spacing-md); }
+.chartPlaceholder { display: flex; align-items: flex-end; gap: var(--spacing-sm); height: 200px; }
+@media (max-width: 767px) { .stats { grid-template-columns: repeat(2, 1fr); } .content { grid-template-columns: 1fr; } }

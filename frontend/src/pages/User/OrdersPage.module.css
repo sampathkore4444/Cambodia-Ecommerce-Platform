@@ -1,0 +1,15 @@
+.page { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+.title { font-size: var(--font-size-2xl); }
+.tabs { display: flex; gap: var(--spacing-xs); overflow-x: auto; }
+.tab { padding: 0.5rem 1rem; border-radius: var(--radius-full); font-size: var(--font-size-sm); border: 1px solid var(--border); background: white; cursor: pointer; white-space: nowrap; }
+.activeTab { background: var(--primary); color: white; border-color: var(--primary); }
+.orders { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+.orderCard { background: var(--background); border-radius: var(--radius-lg); padding: var(--spacing-md); box-shadow: var(--shadow-sm); text-decoration: none; color: inherit; transition: box-shadow 0.2s; }
+.orderCard:hover { box-shadow: var(--shadow-md); }
+.orderHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-sm); }
+.orderId { font-weight: 700; color: var(--primary); }
+.orderItems { font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--spacing-sm); }
+.orderFooter { display: flex; justify-content: space-between; font-size: var(--font-size-sm); }
+.orderFooter span:first-child { font-weight: 700; }
+.date { color: var(--text-muted); }
+.empty { text-align: center; padding: var(--spacing-2xl); color: var(--text-muted); }

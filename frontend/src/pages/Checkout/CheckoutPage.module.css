@@ -1,0 +1,2 @@
+.page { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+.title { font-size: var(--font-size-2xl); text-align: center; }

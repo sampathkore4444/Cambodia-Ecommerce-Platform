@@ -1,0 +1,11 @@
+.page { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
+.left {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  display: flex; align-items: center; justify-content: center; color: white;
+}
+.brand { text-align: center; }
+.logo { font-size: 4rem; display: block; margin-bottom: var(--spacing-md); }
+.brand h1 { font-size: var(--font-size-3xl); }
+.brand p { opacity: 0.8; }
+.right { display: flex; align-items: center; justify-content: center; padding: var(--spacing-2xl); }
+@media (max-width: 767px) { .page { grid-template-columns: 1fr; } .left { display: none; } }
