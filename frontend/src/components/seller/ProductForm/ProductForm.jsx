@@ -208,12 +208,13 @@ export default function ProductForm({ product, onSubmit }) {
       </div>
 
       <div className={styles.uploadSection}>
-        <label>រូបភាព</label>
+        <label>រូបភាព {images.length > 0 && <span className={styles.imageCount}>({images.length})</span>}</label>
         {images.length > 0 && (
           <div className={styles.imageGrid}>
             {images.map((img, i) => (
-              <div key={i} className={styles.imagePreview}>
+              <div key={i} className={`${styles.imagePreview} ${i === 0 ? styles.primaryImage : ''}`}>
                 <img src={img.url} alt={img.alt_text || `រូបភាព ${i + 1}`} />
+                {i === 0 && <span className={styles.primaryBadge}>ទំព័រដើម</span>}
                 <button type="button" className={styles.removeImageBtn} onClick={() => removeImage(i)}>
                   <X size={16} />
                 </button>
@@ -222,19 +223,26 @@ export default function ProductForm({ product, onSubmit }) {
           </div>
         )}
         <div
-          className={styles.uploadArea}
+          className={`${styles.uploadArea} ${uploading ? styles.uploadAreaActive : ''}`}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
-          onClick={() => fileInputRef.current?.click()}
+          onClick={() => !uploading && fileInputRef.current?.click()}
         >
-          <Upload size={32} />
-          <span>{uploading ? 'កំពុងបញ្ចូលរូបភាព...' : 'អូសរូបភាពមកទីនេះ ឬចុចដើម្បីជ្រើសរើស'}</span>
+          {uploading ? (
+            <span className={styles.uploadingText}>កំពុងបញ្ចូលរូបភាព...</span>
+          ) : (
+            <>
+              <Upload size={32} />
+              <span>អូសរូបភាពមកទីនេះ ឬចុចដើម្បីជ្រើសរើស</span>
+              <span className={styles.uploadHint}>JPG, PNG, WebP — អតិបរមា 5MB ក្នុងមួយ</span>
+            </>
+          )}
         </div>
         <input
           ref={fileInputRef}
           type="file"
-          accept="image/*"
+          accept="image/jpeg,image/png,image/webp"
           multiple
           onChange={handleFileSelect}
           style={{ display: 'none' }}

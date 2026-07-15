@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import toast from 'react-hot-toast';
 import ProductForm from '../../components/seller/ProductForm/ProductForm';
 import SellerLayout from '../../components/seller/SellerLayout/SellerLayout';
 import { productsAPI } from '../../api';
@@ -17,6 +18,7 @@ export default function SellerProductNewPage() {
         images.map((img, i) => productsAPI.addImage(productId, { url: img.url, sort_order: i, is_primary: i === 0 }))
       );
     }
+    toast.success('ផលិតផលបានបញ្ចូល! រង់ចាំការពិនិត្យពីអ្នកគ្រប់គ្រង។');
     navigate('/seller/products');
   };
 

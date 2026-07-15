@@ -12,4 +12,5 @@ export const usersAPI = {
   createAddress: (data) => client.post('/users/me/addresses', data),
   updateAddress: (id, data) => client.put(`/users/me/addresses/${id}`, data),
   deleteAddress: (id) => client.delete(`/users/me/addresses/${id}`),
+  setDefaultAddress: (id) => client.put(`/users/me/addresses/${id}/default`),
 };

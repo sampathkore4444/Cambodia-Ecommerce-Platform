@@ -13,3 +13,4 @@ export { shippingAPI } from './shipping';
 export { reviewsAPI } from './reviews';
 export { couponsAPI } from './coupons';
 export { notificationsAPI } from './notifications';
+export { chatbotAPI } from './chatbot';

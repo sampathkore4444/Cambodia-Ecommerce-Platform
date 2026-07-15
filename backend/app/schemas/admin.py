@@ -18,12 +18,12 @@ class AdminDashboardStats(BaseModel):
 
 
 class UserAdminAction(BaseModel):
-    action: str = Field(..., description="ban, unban, or verify")
+    action: Optional[str] = Field(None, description="ban, unban, or verify")
     reason: Optional[str] = None
 
 
 class ProductAdminAction(BaseModel):
-    action: str = Field(..., description="approve, flag, or archive")
+    action: Optional[str] = Field(None, description="approve, flag, or archive")
     reason: Optional[str] = None
 
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import toast from 'react-hot-toast';
 import ProductForm from '../../components/seller/ProductForm/ProductForm';
 import Spinner from '../../components/common/Loading/Spinner';
 import SellerLayout from '../../components/seller/SellerLayout/SellerLayout';
@@ -24,16 +25,21 @@ export default function SellerProductEditPage() {
   }, [id]);
 
   const handleSubmit = async (data, images) => {
-    await productsAPI.updateProduct(id, data);
-    if (images?.length) {
-      await Promise.all(
-        images.map((img, i) => {
-          if (img.id) return Promise.resolve();
-          return productsAPI.addImage(id, { url: img.url, sort_order: i, is_primary: i === 0 });
-        })
-      );
+    try {
+      await productsAPI.updateProduct(id, data);
+      if (images?.length) {
+        await Promise.all(
+          images.map((img, i) => {
+            if (img.id) return Promise.resolve();
+            return productsAPI.addImage(id, { url: img.url, sort_order: i, is_primary: i === 0 });
+          })
+        );
+      }
+      toast.success('បានកែប្រែផលិតផល');
+      navigate('/seller/products');
+    } catch (err) {
+      toast.error(err.response?.data?.message || err.message || 'មិនអាចកែប្រែបាន');
     }
-    navigate('/seller/products');
   };
 
   return (

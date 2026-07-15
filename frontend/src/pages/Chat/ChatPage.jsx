@@ -17,10 +17,10 @@ export default function ChatPage() {
       )}
       {(!isMobile || activeRoom) && (
         <div className={styles.main}>
-          {activeRoom ? <ChatWindow /> : (
+          {activeRoom ? <ChatWindow room={activeRoom} /> : (
             <div className={styles.placeholder}>
-              <p>ជ្រើសរើសការជជែក</p>
-              <p className={styles.sub}>ជ្រើសរើសការជជែកពីបញ្ជី</p>
+              <p>Select a conversation</p>
+              <p className={styles.sub}>Choose a chat from the list</p>
             </div>
           )}
         </div>

@@ -80,15 +80,17 @@ export default function LoginForm() {
     setError('');
     setLoading(true);
     try {
-      await login(tab === 'phone' ? { phone: form.phone, password: form.password } : { email: form.email, password: form.password });
-      navigate('/', { replace: true });
+      const userData = await login(tab === 'phone' ? { phone: form.phone, password: form.password } : { email: form.email, password: form.password });
+      if (userData?.role === 'admin') navigate('/admin', { replace: true });
+      else if (userData?.role === 'seller') navigate('/seller/dashboard', { replace: true });
+      else navigate('/', { replace: true });
     } catch (err) { setError(err.message || 'កំហុសក្នុងការចូល'); }
     finally { setLoading(false); }
   };
 
   return (
     <div className={styles.formContainer}>
-      <h2 className={styles.title}>ចូល</h2>
+      <h2 className={styles.title}>Login</h2>
       <p className={styles.subtitle}>ស្វាគមន៍ត្រឡប់មកវិញ!</p>
       <div className={styles.tabs}>
         <button className={`${styles.tab} ${tab === 'phone' ? styles.activeTab : ''}`} onClick={() => setTab('phone')}>ទូរស័ព្ទ</button>
@@ -102,7 +104,7 @@ export default function LoginForm() {
         )}
         <Input label="ពាក្យសម្ងាត់" name="password" type="password" value={form.password} onChange={e => update('password', e.target.value)} required />
         {error && <p className={styles.error}>{error}</p>}
-        <Button type="submit" fullWidth size="lg" loading={loading}>ចូល</Button>
+        <Button type="submit" fullWidth size="lg" loading={loading}>Login</Button>
       </form>
       <div className={styles.links}>
         <Link to="/forgot-password" className={styles.link}>ភ្លេចពាក្យសម្ងាត់?</Link>

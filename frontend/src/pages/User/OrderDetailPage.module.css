@@ -12,7 +12,8 @@
 .timeline h3 { margin-bottom: var(--spacing-md); }
 .step { display: flex; gap: var(--spacing-md); padding-bottom: var(--spacing-md); position: relative; }
 .step:not(:last-child)::before { content: ''; position: absolute; left: 7px; top: 16px; bottom: 0; width: 2px; background: var(--border); }
-.stepDot { width: 16px; height: 16px; border-radius: var(--radius-full); background: var(--primary); flex-shrink: 0; }
+.stepDot { width: 16px; height: 16px; border-radius: var(--radius-full); flex-shrink: 0; border: 2px solid var(--border); }
+.stepDone .stepDot { background: var(--primary); border-color: var(--primary); }
 .stepLabel { font-size: var(--font-size-sm); font-weight: 500; }
 .stepDate { font-size: var(--font-size-xs); color: var(--text-muted); }
 .actions { display: flex; gap: var(--spacing-sm); }

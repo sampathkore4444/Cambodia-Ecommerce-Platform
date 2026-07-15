@@ -27,13 +27,15 @@ async def create_chat_room(
     if not seller:
         raise NotFoundException("Seller not found")
 
-    if str(data.seller_id) == buyer_id:
+    seller_user_id = str(seller.user_id)
+
+    if seller_user_id == buyer_id:
         raise BadRequestException("Cannot create a chat room with yourself")
 
     existing = await db.execute(
         select(ChatRoom).where(
             ChatRoom.buyer_id == buyer_id,
-            ChatRoom.seller_id == data.seller_id,
+            ChatRoom.seller_id == seller_user_id,
             ChatRoom.is_active == True,
         )
     )
@@ -43,7 +45,7 @@ async def create_chat_room(
 
     room = ChatRoom(
         buyer_id=buyer_id,
-        seller_id=data.seller_id,
+        seller_id=seller_user_id,
         order_id=data.order_id,
         is_active=True,
         buyer_unread=0,
@@ -225,7 +227,7 @@ async def get_unread_count(db: AsyncSession, user_id: str) -> int:
     if seller:
         seller_count = await db.scalar(
             select(func.coalesce(func.sum(ChatRoom.seller_unread), 0)).where(
-                ChatRoom.seller_id == seller.id,
+                ChatRoom.seller_id == str(seller.user_id),
                 ChatRoom.is_active == True,
             )
         )

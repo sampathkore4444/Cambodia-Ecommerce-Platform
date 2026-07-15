@@ -25,12 +25,15 @@ export default function ProductCard({ product, isLiked: initialLiked, onLikeChan
     try {
       if (next) {
         await wishlistAPI.addToWishlist(product.id);
+        toast.success('បានបន្ថែមទៅបំណងប្រាថ្នា');
       } else {
         await wishlistAPI.removeFromWishlist(product.id);
+        toast.success('បានដកចេញពីបំណងប្រាថ្នា');
       }
       onLikeChange?.(product.id, next);
     } catch {
       setLiked(!next);
+      toast.error('មិនអាចអាប់ដេតបំណងប្រាថ្នាបាន');
     }
   };
 

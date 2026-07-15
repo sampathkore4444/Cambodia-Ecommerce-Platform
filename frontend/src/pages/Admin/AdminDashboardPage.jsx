@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { DollarSign, Users, ShoppingCart, Package } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { DollarSign, Users, ShoppingCart, Package, AlertTriangle, UserCheck } from 'lucide-react';
 import StatsCard from '../../components/admin/StatsCard/StatsCard';
+import AdminLayout from '../../components/admin/AdminLayout/AdminLayout';
 import Badge from '../../components/common/Badge/Badge';
 import { adminAPI } from '../../api';
 import styles from './AdminDashboardPage.module.css';
@@ -11,6 +13,7 @@ const statusColors = {
 };
 
 export default function AdminDashboardPage() {
+  const navigate = useNavigate();
   const [stats, setStats] = useState(null);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,8 +28,8 @@ export default function AdminDashboardPage() {
     }).finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <p>កំពុងផ្ទុក...</p>;
-  if (!stats) return <p>មិនអាចផ្ទុកទិន្នន័យបានទេ</p>;
+  if (loading) return <AdminLayout><p>កំពុងផ្ទុក...</p></AdminLayout>;
+  if (!stats) return <AdminLayout><p>មិនអាចផ្ទុកទិន្នន័យបានទេ</p></AdminLayout>;
 
   const statCards = [
     { icon: DollarSign, label: 'ចំណូលសរុប', value: `$${(stats.total_revenue || 0).toLocaleString()}` },
@@ -36,11 +39,37 @@ export default function AdminDashboardPage() {
   ];
 
   return (
+    <AdminLayout>
     <div className={styles.page}>
       <h1 className={styles.title}>Admin Dashboard</h1>
       <div className={styles.stats}>
         {statCards.map((s, i) => <StatsCard key={i} {...s} />)}
       </div>
+
+      {(stats?.pending_products > 0 || stats?.pending_sellers > 0) && (
+        <div className={styles.alerts}>
+          {stats.pending_products > 0 && (
+            <div className={styles.alertCard} onClick={() => navigate('/admin/products')}>
+              <AlertTriangle size={20} />
+              <div className={styles.alertInfo}>
+                <span className={styles.alertCount}>{stats.pending_products}</span>
+                <span>ផលិតផលរង់ចាំអនុម័ត</span>
+              </div>
+              <span className={styles.alertAction}>មើល →</span>
+            </div>
+          )}
+          {stats.pending_sellers > 0 && (
+            <div className={styles.alertCard} onClick={() => navigate('/admin/users')}>
+              <UserCheck size={20} />
+              <div className={styles.alertInfo}>
+                <span className={styles.alertCount}>{stats.pending_sellers}</span>
+                <span>អ្នកលក់រង់ចាំផ្ទៀងផ្ទាត់</span>
+              </div>
+              <span className={styles.alertAction}>មើល →</span>
+            </div>
+          )}
+        </div>
+      )}
       <div className={styles.content}>
         <div className={styles.chart}>
           <h3>ទិន្នន័យសង្ខេប</h3>
@@ -89,5 +118,6 @@ export default function AdminDashboardPage() {
         </tbody>
       </table>
     </div>
+    </AdminLayout>
   );
 }

@@ -1,9 +1,11 @@
 from fastapi import APIRouter, Depends, Query
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.common.responses import success_response
 from app.core.dependencies import get_current_active_user, get_db
+from app.core.security import verify_token
 from app.schemas.user import (
     OTPVerify,
     PhoneLogin,
@@ -66,12 +68,23 @@ async def refresh_token(
     return success_response(data=result, message="Token refreshed successfully")
 
 
+security_scheme = HTTPBearer(auto_error=False)
+
+
 @router.post("/logout")
 async def logout(
     current_user=Depends(get_current_active_user),
+    credentials: HTTPAuthorizationCredentials = Depends(security_scheme),
     db: AsyncSession = Depends(get_db),
 ):
-    await auth_service.logout_user(db, str(current_user.id))
+    token_jti = ""
+    if credentials:
+        try:
+            payload = verify_token(credentials.credentials)
+            token_jti = payload.jti
+        except Exception:
+            pass
+    await auth_service.logout_user(db, str(current_user.id), token_jti)
     return success_response(message="Logged out successfully")
 
 

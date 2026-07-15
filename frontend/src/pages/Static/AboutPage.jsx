@@ -28,7 +28,7 @@ export default function AboutPage() {
         </p>
         <p>
           KhmerMarket is Cambodia's leading e-commerce platform connecting sellers and buyers nationwide.
-          Founded in 2024, our vision is to make online buying and selling easy and secure for everyone.
+          Founded in 2026, our vision is to make online buying and selling easy and secure for everyone.
         </p>
       </section>
 

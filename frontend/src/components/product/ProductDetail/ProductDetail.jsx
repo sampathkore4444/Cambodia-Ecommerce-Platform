@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Star, Share2, MessageCircle, Heart } from 'lucide-react';
 import { useAuth } from '../../../hooks/useAuth';
 import { useCart } from '../../../hooks/useCart';
-import { wishlistAPI } from '../../../api';
+import { wishlistAPI, chatAPI } from '../../../api';
 import { formatPrice, generateStars } from '../../../utils/helpers';
 import { PRODUCT_CONDITIONS } from '../../../utils/constants';
 import ImageGallery from '../../common/ImageGallery/ImageGallery';
@@ -12,6 +12,7 @@ import Badge from '../../common/Badge/Badge';
 import Button from '../../common/Button/Button';
 import ReviewList from '../ReviewList/ReviewList';
 import ReviewForm from '../ReviewForm/ReviewForm';
+import toast from 'react-hot-toast';
 import styles from './ProductDetail.module.css';
 
 export default function ProductDetail({ product }) {
@@ -38,17 +39,64 @@ export default function ProductDetail({ product }) {
   }, [isAuthenticated, product?.id]);
 
   const toggleWishlist = async () => {
-    if (!isAuthenticated) return;
+    if (!isAuthenticated) {
+      toast.error('សូមចុះឈ្មោះដើម្បីបន្ថែមទៅបំណងប្រាថ្នា');
+      return;
+    }
     const next = !liked;
     setLiked(next);
     try {
       if (next) {
         await wishlistAPI.addToWishlist(product.id);
+        toast.success('បានបន្ថែមទៅបំណងប្រាថ្នា');
       } else {
         await wishlistAPI.removeFromWishlist(product.id);
+        toast.success('បានដកចេញពីបំណងប្រាថ្នា');
       }
     } catch {
       setLiked(!next);
+      toast.error('មិនអាចអាប់ដេតបំណងប្រាថ្នាបាន');
+    }
+  };
+
+  const handleShare = async () => {
+    const url = window.location.href;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: product.name, url });
+      } catch { /* user cancelled */ }
+    } else {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = url;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        toast.success('បានចម្លងតំណភ្ជាប់');
+      } catch {
+        toast.error('មិនអាចចម្លងតំណភ្ជាប់បាន');
+      }
+    }
+  };
+
+  const handleChat = async () => {
+    if (!isAuthenticated) {
+      toast.error('សូមចុះឈ្មោះដើម្បីជជែក');
+      return;
+    }
+    if (!product.seller?.id) {
+      toast.error('មិនមានព័ត៌មានអ្នកលក់');
+      return;
+    }
+    try {
+      const res = await chatAPI.createRoom({ seller_id: product.seller.id, product_id: product.id });
+      const room = res.data.data || res.data;
+      navigate('/chat', { state: { roomId: room.id } });
+    } catch {
+      toast.error('មិនអាចបង្កើតបន្ទប់ជជែកបាន');
     }
   };
 
@@ -105,8 +153,8 @@ export default function ProductDetail({ product }) {
             <Heart size={16} fill={liked ? 'var(--khmer-red)' : 'none'} stroke={liked ? 'var(--khmer-red)' : 'currentColor'} />
             {liked ? 'ដកចេញ' : 'បន្ថែមទៅបំណងប្រាថ្នា'}
           </Button>
-          <Button variant="ghost" size="sm"><Share2 size={16} /> ចែករំលែក</Button>
-          <Button variant="ghost" size="sm"><MessageCircle size={16} /> ជជែក</Button>
+          <Button variant="ghost" size="sm" onClick={handleShare}><Share2 size={16} /> ចែករំលែក</Button>
+          <Button variant="ghost" size="sm" onClick={handleChat}><MessageCircle size={16} /> ជជែក</Button>
         </div>
         <div className={styles.sellerCard}>
           <div className={styles.sellerAvatar}>{product.seller?.name?.[0] || 'S'}</div>

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { DollarSign, ShoppingCart, Package, TrendingUp, AlertTriangle, Star } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { DollarSign, ShoppingCart, Package, TrendingUp, AlertTriangle, Eye, PlusCircle } from 'lucide-react';
 import { sellerAPI } from '../../../api';
 import { formatPrice } from '../../../utils/helpers';
 import StatsCard from '../../admin/StatsCard/StatsCard';
 import styles from './SellerDashboard.module.css';
 
 export default function SellerDashboard() {
+  const navigate = useNavigate();
   const [stats, setStats] = useState([]);
   const [recentOrders, setRecentOrders] = useState([]);
   const [analytics, setAnalytics] = useState(null);
@@ -57,9 +59,31 @@ export default function SellerDashboard() {
     ordersByStatus[o.status] = (ordersByStatus[o.status] || 0) + 1;
   });
 
+  const totalOrders = Object.values(ordersByStatus).reduce((s, c) => s + c, 0) || 1;
+
+  const statusLabels = {
+    pending: 'រង់ចាំ', confirmed: 'បញ្ជាក់', processing: 'ដំណើរការ',
+    shipped: 'ផ្ញើរួច', delivered: 'ដឹកជញ្ជូនរួច', completed: 'បញ្ចប់', cancelled: 'បោះបង់',
+  };
+  const statusColors = {
+    pending: '#f59e0b', confirmed: '#3b82f6', processing: '#3b82f6',
+    shipped: '#6366f1', delivered: '#10b981', completed: '#10b981', cancelled: '#ef4444',
+  };
+
   return (
     <div className={styles.dashboard}>
-      <h2 className={styles.title}>តារាងព័ត៌មាន</h2>
+      <div className={styles.headerRow}>
+        <h2 className={styles.title}>តារាងព័ត៌មាន</h2>
+        <div className={styles.quickActions}>
+          <button className={styles.actionBtn} onClick={() => navigate('/seller/orders')}>
+            <Eye size={16} /> មើលបញ្ជា
+          </button>
+          <button className={styles.actionBtn} onClick={() => navigate('/seller/products/new')}>
+            <PlusCircle size={16} /> បន្ថែមផលិតផល
+          </button>
+        </div>
+      </div>
+
       <div className={styles.stats}>
         {loading
           ? Array.from({ length: 4 }).map((_, i) => <StatsCard key={i} label="..." value="..." icon={Package} />)
@@ -124,7 +148,18 @@ export default function SellerDashboard() {
           <div className={styles.statusList}>
             {Object.entries(ordersByStatus).map(([status, count]) => (
               <div key={status} className={styles.statusItem}>
-                <span className={styles.statusLabel}>{status}</span>
+                <div className={styles.statusInfo}>
+                  <span className={styles.statusLabel}>{statusLabels[status] || status}</span>
+                  <div className={styles.statusBar}>
+                    <div
+                      className={styles.statusBarFill}
+                      style={{
+                        width: `${(count / totalOrders) * 100}%`,
+                        background: statusColors[status] || 'var(--primary)',
+                      }}
+                    />
+                  </div>
+                </div>
                 <span className={styles.statusCount}>{count}</span>
               </div>
             ))}

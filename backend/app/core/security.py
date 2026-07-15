@@ -20,6 +20,7 @@ class TokenPayload(BaseModel):
     exp: int
     type: str = "access"
     token_version: int = 0
+    jti: str = ""
 
 
 def _all_jwt_keys() -> list[str]:
@@ -43,6 +44,7 @@ def create_access_token(
         "exp": expire,
         "type": "access",
         "token_version": token_version,
+        "jti": secrets.token_hex(16),
     }
     return jwt.encode(payload, settings.JWT_SECRET_KEY, algorithm=settings.JWT_ALGORITHM)
 
@@ -55,6 +57,7 @@ def create_refresh_token(subject: Union[str, Any], token_version: int = 0) -> st
         "exp": expire,
         "type": "refresh",
         "token_version": token_version,
+        "jti": secrets.token_hex(16),
     }
     return jwt.encode(payload, settings.JWT_SECRET_KEY, algorithm=settings.JWT_ALGORITHM)
 
@@ -73,6 +76,7 @@ def verify_token(token: str) -> TokenPayload:
                 exp=payload["exp"],
                 type=payload.get("type", "access"),
                 token_version=payload.get("token_version", 0),
+                jti=payload.get("jti", ""),
             )
         except JWTError as e:
             last_error = e

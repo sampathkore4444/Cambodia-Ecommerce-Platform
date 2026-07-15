@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { adminAPI } from '../../api';
+import AdminLayout from '../../components/admin/AdminLayout/AdminLayout';
 import Badge from '../../components/common/Badge/Badge';
+import ConfirmAction from '../../components/common/ConfirmAction/ConfirmAction';
 import toast from 'react-hot-toast';
 
 export default function AdminProductsPage() {
@@ -36,8 +38,6 @@ export default function AdminProductsPage() {
   };
 
   const handleFlag = async (id) => {
-    const reason = reason => reason;
-    if (!window.confirm('តើអ្នកប្រាកដជាចង់រារាំងផលិតផលនេះមែនទេ?')) return;
     try {
       await adminAPI.flagProduct(id, 'Flagged by admin');
       toast.success('បានរារាំងផលិតផល');
@@ -46,6 +46,7 @@ export default function AdminProductsPage() {
   };
 
   return (
+    <AdminLayout>
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-lg)' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h1>ផលិតផល</h1>
@@ -86,7 +87,9 @@ export default function AdminProductsPage() {
                     <button onClick={() => handleApprove(p.id)} style={{ fontSize: '12px', padding: '4px 8px', background: 'var(--success)', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>អនុម័ត</button>
                   )}
                   {p.is_active && (
-                    <button onClick={() => handleFlag(p.id)} style={{ fontSize: '12px', padding: '4px 8px', background: 'var(--error)', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>រារាំង</button>
+                    <ConfirmAction message="តើអ្នកប្រាកដជាចង់រារាំងផលិតផលនេះមែនទេ?" onConfirm={() => handleFlag(p.id)}>
+                      <button style={{ fontSize: '12px', padding: '4px 8px', background: 'var(--error)', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>រារាំង</button>
+                    </ConfirmAction>
                   )}
                 </td>
               </tr>
@@ -104,5 +107,6 @@ export default function AdminProductsPage() {
         </div>
       )}
     </div>
+    </AdminLayout>
   );
 }

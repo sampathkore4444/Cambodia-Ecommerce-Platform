@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { adminAPI } from '../../api';
+import AdminLayout from '../../components/admin/AdminLayout/AdminLayout';
 import Badge from '../../components/common/Badge/Badge';
+import ConfirmAction from '../../components/common/ConfirmAction/ConfirmAction';
 import toast from 'react-hot-toast';
 
 export default function AdminUsersPage() {
@@ -47,7 +49,6 @@ export default function AdminUsersPage() {
   }, [tab, page, loadUsers, loadSellers]);
 
   const handleBan = async (userId) => {
-    if (!window.confirm('តើអ្នកប្រាកដជាចង់ហាមឃាត់អ្នកប្រើប្រាស់នេះមែនទេ?')) return;
     try {
       await adminAPI.banUser(userId, 'Banned by admin');
       toast.success('បានហាមឃាត់អ្នកប្រើប្រាស់');
@@ -78,6 +79,7 @@ export default function AdminUsersPage() {
   };
 
   return (
+    <AdminLayout>
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-lg)' }}>
       <h1>គ្រប់គ្រងអ្នកប្រើប្រាស់</h1>
 
@@ -130,7 +132,9 @@ export default function AdminUsersPage() {
                 </td>
                 <td style={{ padding: '0.75rem', display: 'flex', gap: '0.5rem' }}>
                   {u.is_active ? (
-                    <button onClick={() => handleBan(u.id)} style={{ fontSize: '12px', padding: '4px 8px', background: 'var(--error)', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>ហាមឃាត់</button>
+                    <ConfirmAction message="តើអ្នកប្រាកដជាចង់ហាមឃាត់អ្នកប្រើប្រាស់នេះមែនទេ?" onConfirm={() => handleBan(u.id)}>
+                      <button style={{ fontSize: '12px', padding: '4px 8px', background: 'var(--error)', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>ហាមឃាត់</button>
+                    </ConfirmAction>
                   ) : (
                     <button onClick={() => handleUnban(u.id)} style={{ fontSize: '12px', padding: '4px 8px', background: 'var(--success)', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>ដោះលែង</button>
                   )}
@@ -180,5 +184,6 @@ export default function AdminUsersPage() {
         </div>
       )}
     </div>
+    </AdminLayout>
   );
 }

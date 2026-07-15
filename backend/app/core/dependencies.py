@@ -32,9 +32,10 @@ async def get_current_user(
 
     from app.core.events import get_redis
     r = await get_redis()
-    is_blacklisted = await r.get(f"blacklist:token:{payload.sub}")
-    if is_blacklisted:
-        raise UnauthorizedException("Token has been revoked")
+    if payload.jti:
+        is_blacklisted = await r.get(f"blacklist:token:{payload.jti}")
+        if is_blacklisted:
+            raise UnauthorizedException("Token has been revoked")
 
     result = await db.execute(
         select(User).where(User.id == payload.sub)

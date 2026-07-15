@@ -50,7 +50,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.bottom}>
-          <p>© 2024 KhmerMarket. {t('allRightsReserved')}</p>
+          <p>© 2026 KhmerMarket. {t('allRightsReserved')}</p>
         </div>
       </div>
     </footer>

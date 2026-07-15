@@ -7,6 +7,7 @@ import { LanguageProvider } from './context/LanguageContext';
 import Toast from './components/common/Toast/Toast';
 import ErrorBoundary from './components/common/ErrorBoundary/ErrorBoundary';
 import MainLayout from './components/layout/MainLayout/MainLayout';
+import ChatbotWidget from './components/chatbot/ChatbotWidget';
 import AppRoutes from './routes';
 import './styles/globals.css';
 import './styles/responsive.css';
@@ -28,6 +29,7 @@ export default function App() {
                 </ErrorBoundary>
               </MainLayout>
               <Toast />
+              <ChatbotWidget />
             </CartProvider>
           </AuthProvider>
         </LanguageProvider>

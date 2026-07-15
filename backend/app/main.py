@@ -13,6 +13,7 @@ from app.routes import (
     cart,
     categories,
     chat,
+    chatbot,
     coupons,
     notifications,
     orders,
@@ -25,6 +26,7 @@ from app.routes import (
     users,
     wishlist,
 )
+from app.routes import ws_chat
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -62,6 +64,8 @@ app.include_router(search.router, prefix="/api/v1")
 app.include_router(admin.router, prefix="/api/v1")
 app.include_router(seller.router, prefix="/api/v1")
 app.include_router(bulk_upload.router, prefix="/api/v1")
+app.include_router(chatbot.router, prefix="/api/v1")
+app.include_router(ws_chat.router)
 
 app.mount("/static/uploads", StaticFiles(directory="uploads"), name="uploads")
 

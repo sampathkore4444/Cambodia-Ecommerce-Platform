@@ -26,6 +26,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "prebuild": "node -e \"const fs=require('fs');const c={apiKey:process.env.VITE_FIREBASE_API_KEY||'',authDomain:process.env.VITE_FIREBASE_AUTH_DOMAIN||'',projectId:process.env.VITE_FIREBASE_PROJECT_ID||'',messagingSenderId:process.env.VITE_FIREBASE_MESSAGING_SENDER_ID||'',appId:process.env.VITE_FIREBASE_APP_ID||''};if(c.apiKey)fs.writeFileSync('public/firebase-config.js','window.__FIREBASE_CONFIG__='+JSON.stringify(c)+';');else console.log('Firebase config not set, skipping firebase-config.js generation');\"",
     "build": "react-scripts build",
     "test": "react-scripts test"
   },

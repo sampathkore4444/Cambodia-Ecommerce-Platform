@@ -57,6 +57,20 @@ class Settings(BaseSettings):
     DEFAULT_CURRENCY: str = "USD"
     KHR_USD_RATE: int = 4100
 
+    OLLAMA_BASE_URL: str = "http://localhost:11434"
+    OLLAMA_MODEL: str = "phi3:mini"
+    CHATBOT_MAX_HISTORY: int = 20
+    CHATBOT_SYSTEM_PROMPT: str = (
+        "You are KhmerMarket's customer support assistant. "
+        "You help customers with questions about products, orders, payments, "
+        "shipping, returns, and general marketplace usage. "
+        "KhmerMarket is Cambodia's premier e-commerce platform supporting "
+        "Khmer and English languages, USD/KHR currency, and local payment "
+        "gateways (ABA Bank, Wing, Pi Pay). "
+        "Be helpful, concise, and friendly. If you don't know the answer, "
+        "say so and suggest contacting human support."
+    )
+
     GOOGLE_CLIENT_ID: str = ""
     FACEBOOK_APP_ID: str = ""
     FACEBOOK_APP_SECRET: str = ""

@@ -5,6 +5,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { authAPI, sellerAPI } from '../../api';
 import Button from '../../components/common/Button/Button';
 import Input from '../../components/common/Input/Input';
+import toast from 'react-hot-toast';
 import styles from './SellPage.module.css';
 
 const benefits = [
@@ -53,6 +54,7 @@ export default function SellPage() {
       }
       await sellerAPI.register({ shop_name: shopName, shop_name_kh: shopNameKm || undefined });
       updateUser({ role: 'seller' });
+      toast.success('ចុះឈ្មោះជោគជ័យ! អ្នកក្លាយជាអ្នកលក់ហើយ។');
       setSuccess(true);
     } catch (err) {
       setError(err.message || 'មានបញ្ហា។ សូមព្យាយាមម្តងទៀត។');

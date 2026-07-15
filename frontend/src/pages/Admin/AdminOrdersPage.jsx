@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { adminAPI } from '../../api';
+import AdminLayout from '../../components/admin/AdminLayout/AdminLayout';
 import Badge from '../../components/common/Badge/Badge';
 import toast from 'react-hot-toast';
 
@@ -36,6 +37,7 @@ export default function AdminOrdersPage() {
   const statusLabels = { '': 'ទាំងអស់', pending: 'រង់ចាំ', confirmed: 'បញ្ជាក់', processing: 'កំពុងដំណើរការ', shipped: 'បានផ្ញើ', delivered: 'បានដឹកជញ្ជូន', cancelled: 'បោះបង់' };
 
   return (
+    <AdminLayout>
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-lg)' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h1>បញ្ជាទិញ</h1>
@@ -87,5 +89,6 @@ export default function AdminOrdersPage() {
         </div>
       )}
     </div>
+    </AdminLayout>
   );
 }

@@ -62,7 +62,10 @@ async def upload_avatar(db: AsyncSession, user_id: str, file) -> str:
     if not user:
         raise NotFoundException("User not found")
 
-    url = f"/uploads/avatars/{user_id}_{int(datetime.now(timezone.utc).timestamp())}.jpg"
+    from app.utils.storage import StorageService
+    storage = StorageService(provider="local")
+    ext = (file.filename or "avatar.jpg").rsplit(".", 1)[-1] if file.filename else "jpg"
+    url = await storage.upload_file(file, folder="avatars", filename=f"{user_id}.{ext}")
     user.avatar_url = url
     user.updated_at = datetime.now(timezone.utc)
     await db.flush()

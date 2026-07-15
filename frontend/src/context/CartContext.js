@@ -76,6 +76,7 @@ export function CartProvider({ children }) {
         const res = await cartAPI.getCart();
         const data = res.data.data;
         setItems(data?.items || []);
+        toast.success('បានអាប់ដេតបរិមាណ');
       } catch (err) {
         toast.error(err.message || 'មិនអាចអាប់ដេតបរិមាណបាន');
       } finally {
@@ -83,6 +84,7 @@ export function CartProvider({ children }) {
       }
     } else {
       setItems(prev => prev.map(i => (i.id || i.productId) === itemId ? { ...i, quantity } : i));
+      toast.success('បានអាប់ដេតបរិមាណ');
     }
   }, [isAuthenticated]);
 
@@ -92,6 +94,7 @@ export function CartProvider({ children }) {
       try {
         await cartAPI.removeFromCart(itemId);
         setItems(prev => prev.filter(i => i.id !== itemId));
+        toast.success('បានលុបពីរទេះ');
       } catch (err) {
         toast.error(err.message || 'មិនអាចលុបបាន');
       } finally {
@@ -99,6 +102,7 @@ export function CartProvider({ children }) {
       }
     } else {
       setItems(prev => prev.filter(i => i.id !== itemId && i.productId !== itemId));
+      toast.success('បានលុបពីរទេះ');
     }
   }, [isAuthenticated]);
 

@@ -1,6 +1,6 @@
 const translations = {
   km: {
-    home: 'ទំព័រដើម', search: 'ស្វែងរក', cart: 'រទេះ', login: 'ចូល', register: 'ចុះឈ្មោះ', profile: 'ប្រវត្តិរូប',
+    home: 'ទំព័រដើម', search: 'ស្វែងរក', cart: 'រទេះ', login: 'Login', register: 'ចុះឈ្មោះ', profile: 'ប្រវត្តិរូប',
     orders: 'បញ្ជាទិញ', wishlist: 'បំណងប្រាថ្នា', sell: 'លក់', chat: 'ជជែក', settings: 'ការកំណត់', logout: 'ចេញ',
     addToCart: 'បន្ថែមទៅរទេះ', buyNow: 'ទិញភ្លាម', checkout: 'បង់ប្រាក់', placeOrder: 'ដាក់បញ្ជា',
     shippingAddress: 'អាសយដ្ឋានដឹកជញ្ជូន', paymentMethod: 'វិធីបង់ប្រាក់', orderSummary: 'សង្ខេបបញ្ជា',
@@ -40,7 +40,7 @@ const translations = {
     filterPayment: 'អំពីយើង', paymentFilterTitle: 'ប្រភេទ', paymentFilterMethods: 'វិធីបង់ប្រាក់',
     userMenuProfile: 'ប្រវត្តិរូប', userMenuOrders: 'បញ្ជាទិញ', userMenuWishlist: 'បំណងប្រាថ្នា',
     userMenuChat: 'ជជែក', userMenuSeller: 'អ្នកលក់', userMenuBecomeSeller: 'ក្លាយជាអ្នកលក់',
-    userMenuAdmin: 'Admin', userMenuLogout: 'ចេញ',
+    userMenuAdmin: 'Admin', userMenuLogout: 'Logout',
   },
   en: {
     home: 'Home', search: 'Search', cart: 'Cart', login: 'Login', register: 'Register', profile: 'Profile',

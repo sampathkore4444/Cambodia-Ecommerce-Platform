@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Star, X, Camera } from 'lucide-react';
 import { reviewsAPI, productsAPI } from '../../../api';
 import Button from '../../common/Button/Button';
+import toast from 'react-hot-toast';
 import styles from './ReviewForm.module.css';
 
 export default function ReviewForm({ productId, onSuccess }) {
@@ -54,9 +55,12 @@ export default function ReviewForm({ productId, onSuccess }) {
         images: images.length > 0 ? images : undefined,
       });
       setRating(0); setTitle(''); setComment(''); setImages([]);
+      toast.success('បានផ្ញើមតិយោបល់');
       if (onSuccess) onSuccess();
     } catch (err) {
-      setError(err.response?.data?.message || 'មិនអាចផ្ញើមតិបាន។');
+      const msg = err.response?.data?.message || 'មិនអាចផ្ញើមតិបាន។';
+      setError(msg);
+      toast.error(msg);
     } finally {
       setSubmitting(false);
     }

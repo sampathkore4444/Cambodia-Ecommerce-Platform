@@ -202,10 +202,11 @@ async def refresh_access_token(db: AsyncSession, refresh_token: str) -> dict:
     return tokens
 
 
-async def logout_user(db: AsyncSession, user_id: str) -> bool:
+async def logout_user(db: AsyncSession, user_id: str, token_jti: str = "") -> bool:
     r = await get_redis()
     await r.setex(f"blacklist:user:{user_id}", 86400, "logged_out")
-    await r.setex(f"blacklist:token:{user_id}", settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60, "revoked")
+    if token_jti:
+        await r.setex(f"blacklist:token:{token_jti}", settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60, "revoked")
     return True
 
 

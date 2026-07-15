@@ -90,6 +90,14 @@ async def get_dashboard_stats(db: AsyncSession) -> dict:
         )
     ) or 0
 
+    pending_products = await db.scalar(
+        select(func.count(Product.id)).where(Product.is_active == False)
+    ) or 0
+
+    pending_sellers = await db.scalar(
+        select(func.count(Seller.id)).where(Seller.is_verified == False)
+    ) or 0
+
     return {
         "total_users": total_users,
         "total_sellers": total_sellers,
@@ -100,6 +108,8 @@ async def get_dashboard_stats(db: AsyncSession) -> dict:
         "orders_30d": orders_30d,
         "revenue_30d": round(float(revenue_30d), 2),
         "pending_orders": pending_orders,
+        "pending_products": pending_products,
+        "pending_sellers": pending_sellers,
         "low_stock_products": low_stock,
         "recent_orders": recent_orders,
         "top_products": top_products,
@@ -280,6 +290,7 @@ async def approve_product(db: AsyncSession, product_id: str) -> dict:
         raise NotFoundException("Product not found")
 
     product.is_active = True
+    product.status = "active"
     product.updated_at = datetime.now(timezone.utc)
     await db.flush()
     await db.refresh(product)
@@ -293,6 +304,7 @@ async def flag_product(db: AsyncSession, product_id: str, reason: str) -> dict:
         raise NotFoundException("Product not found")
 
     product.is_active = False
+    product.status = "paused"
     product.updated_at = datetime.now(timezone.utc)
     await db.flush()
     await db.refresh(product)
