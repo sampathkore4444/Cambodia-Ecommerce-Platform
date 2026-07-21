@@ -13,7 +13,7 @@ httpx==0.25.2
 redis==5.0.1
 celery==5.3.6
 apscheduler==3.10.4
-Pillow==10.1.0
+Pillow==12.3.0
 aiofiles==23.2.1
 python-dateutil==2.8.2
 pytz==2023.3
